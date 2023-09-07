@@ -14,12 +14,15 @@ is_running = False
 @bot.message_handler(commands=['start'])
 def start(message):
     global is_running
-    if not is_running:
-        is_running = True
-        response = "成功启动 OBETestPyBot"
+    if is_running:
+        response = "OBETestPyBot 已经在运行中"
+        bot.send_message(chat_id=message.chat.id, text=response)
+    elif message.from_user.id != 729156731:
+        response = "用戶不能使用 OBETestPyBot"
         bot.send_message(chat_id=message.chat.id, text=response)
     else:
-        response = "OBETestPyBot 已经在运行中"
+        is_running = True
+        response = "成功启动 OBETestPyBot"
         bot.send_message(chat_id=message.chat.id, text=response)
 
     print("Chat ID:", message.chat.id)
