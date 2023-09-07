@@ -16,11 +16,17 @@ def start(message):
     global is_running
     if not is_running:
         is_running = True
-        response = "成功启动 GLOPayBot"
+        response = "成功启动 OBETestPyBot"
         bot.send_message(chat_id=message.chat.id, text=response)
     else:
-        response = "GLOPayBot 已经在运行中"
+        response = "OBETestPyBot 已经在运行中"
         bot.send_message(chat_id=message.chat.id, text=response)
+
+    print("Chat ID:", message.chat.id)
+    print("User ID:", message.from_user.id)
+    print("User Name:", message.from_user.first_name + " " + message.from_user.last_name)
+    print("User Input:", message.text)
+    print()
 
 
 @bot.message_handler(commands=['end'])
@@ -28,17 +34,23 @@ def end(message):
     global is_running
     if is_running:
         is_running = False
-        response = "成功结束 GLOPayBot"
+        response = "成功结束 OBETestPyBot"
         bot.send_message(chat_id=message.chat.id, text=response)
     else:
-        response = "GLOPayBot 未在运行中"
+        response = "OBETestPyBot 未在运行中"
         bot.send_message(chat_id=message.chat.id, text=response)
+
+    print("Chat ID:", message.chat.id)
+    print("User ID:", message.from_user.id)
+    print("User Name:", message.from_user.first_name + " " + message.from_user.last_name)
+    print("User Input:", message.text)
+    print()
 
 
 @bot.message_handler(commands=['payin'])
 def payin(message):
     if not is_running:
-        response = "GLOPayBot 未在运行中"
+        response = "OBETestPyBot 未在运行中"
         bot.send_message(chat_id=message.chat.id, text=response)
         return
 
@@ -61,6 +73,12 @@ def payin(message):
         response = "请输入 /payin {你的订单号}"
 
     bot.send_message(chat_id=message.chat.id, text=response)
+
+    print("Chat ID:", message.chat.id)
+    print("User ID:", message.from_user.id)
+    print("User Name:", message.from_user.first_name + " " + message.from_user.last_name)
+    print("User Input:", message.text)
+    print()
 
 
 def call_payin_post_api(agent_order_id):
@@ -98,7 +116,7 @@ def call_payin_post_api(agent_order_id):
 @bot.message_handler(commands=['payout'])
 def payout(message):
     if not is_running:
-        response = "GLOPayBot 未在运行中"
+        response = "OBETestPyBot 未在运行中"
         bot.send_message(chat_id=message.chat.id, text=response)
         return
 
@@ -122,6 +140,12 @@ def payout(message):
         response = "请输入 /payout {你的订单号}"
 
     bot.send_message(chat_id=message.chat.id, text=response)
+
+    print("Chat ID:", message.chat.id)
+    print("User ID:", message.from_user.id)
+    print("User Name:", message.from_user.first_name + " " + message.from_user.last_name)
+    print("User Input:", message.text)
+    print()
 
 
 def call_payout_post_api(agent_order_id):
@@ -160,7 +184,7 @@ def call_payout_post_api(agent_order_id):
 @bot.message_handler(commands=['balance'])
 def balance(message):
     if not is_running:
-        response = "GLOPayBot 未在运行中"
+        response = "OBETestPyBot 未在运行中"
         bot.send_message(chat_id=message.chat.id, text=response)
         return
 
@@ -174,6 +198,12 @@ def balance(message):
         response = "可用余额: {}\n余额: {}".format(available_balance, balance)
 
     bot.send_message(chat_id=message.chat.id, text=response)
+
+    print("Chat ID:", message.chat.id)
+    print("User ID:", message.from_user.id)
+    print("User Name:", message.from_user.first_name + " " + message.from_user.last_name)
+    print("User Input:", message.text)
+    print()
 
 
 @bot.message_handler(func=lambda message: True)
