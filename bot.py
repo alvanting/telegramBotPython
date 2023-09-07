@@ -11,6 +11,14 @@ bot = telebot.TeleBot('6316125267:AAFVViglW41nbjZX56cUtyHwBM18-viDNLQ')
 is_running = False
 
 
+def print_data(message):
+    print("Chat ID:", message.chat.id)
+    print("User ID:", message.from_user.id)
+    print("User Name:", message.from_user.first_name + " " + message.from_user.last_name)
+    print("User Input:", message.text)
+    print()
+
+
 @bot.message_handler(commands=['start'])
 def start(message):
     global is_running
@@ -25,11 +33,7 @@ def start(message):
         response = "成功启动 OBETestPyBot"
         bot.send_message(chat_id=message.chat.id, text=response)
 
-    print("Chat ID:", message.chat.id)
-    print("User ID:", message.from_user.id)
-    print("User Name:", message.from_user.first_name + " " + message.from_user.last_name)
-    print("User Input:", message.text)
-    print()
+    print_data(message)
 
 
 @bot.message_handler(commands=['end'])
@@ -43,11 +47,7 @@ def end(message):
         response = "OBETestPyBot 未在运行中"
         bot.send_message(chat_id=message.chat.id, text=response)
 
-    print("Chat ID:", message.chat.id)
-    print("User ID:", message.from_user.id)
-    print("User Name:", message.from_user.first_name + " " + message.from_user.last_name)
-    print("User Input:", message.text)
-    print()
+    print_data(message)
 
 
 @bot.message_handler(commands=['payin'])
@@ -77,11 +77,7 @@ def payin(message):
 
     bot.send_message(chat_id=message.chat.id, text=response)
 
-    print("Chat ID:", message.chat.id)
-    print("User ID:", message.from_user.id)
-    print("User Name:", message.from_user.first_name + " " + message.from_user.last_name)
-    print("User Input:", message.text)
-    print()
+    print_data(message)
 
 
 def call_payin_post_api(agent_order_id):
@@ -144,11 +140,7 @@ def payout(message):
 
     bot.send_message(chat_id=message.chat.id, text=response)
 
-    print("Chat ID:", message.chat.id)
-    print("User ID:", message.from_user.id)
-    print("User Name:", message.from_user.first_name + " " + message.from_user.last_name)
-    print("User Input:", message.text)
-    print()
+    print_data(message)
 
 
 def call_payout_post_api(agent_order_id):
@@ -202,11 +194,7 @@ def balance(message):
 
     bot.send_message(chat_id=message.chat.id, text=response)
 
-    print("Chat ID:", message.chat.id)
-    print("User ID:", message.from_user.id)
-    print("User Name:", message.from_user.first_name + " " + message.from_user.last_name)
-    print("User Input:", message.text)
-    print()
+    print_data(message)
 
 
 @bot.message_handler(func=lambda message: True)
