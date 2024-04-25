@@ -5,8 +5,8 @@ import hashlib
 import telebot
 import requests
 
-# 创建Telegram bot对象
-bot = telebot.TeleBot('6316125267:AAFVViglW41nbjZX56cUtyHwBM18-viDNLQ')
+# Telegram bot key
+bot = telebot.TeleBot('')
 
 is_running = False
 
